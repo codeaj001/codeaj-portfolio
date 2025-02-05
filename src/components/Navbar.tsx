@@ -13,9 +13,9 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed w-full z-50 glass py-4">
+    <nav className="fixed w-full z-50 glass py-4 animate-slide-down">
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <a href="#home" className="text-2xl font-bold neon-glow">
+        <a href="#home" className="text-2xl font-bold neon-glow gradient-border px-4 py-2 rounded-lg">
           Code AJ
         </a>
 
@@ -25,7 +25,7 @@ const Navbar = () => {
             <a
               key={item.name}
               href={item.href}
-              className="hover:text-primary transition-colors duration-300"
+              className="hover:text-primary transition-colors duration-300 hover:neon-glow"
             >
               {item.name}
             </a>
@@ -34,7 +34,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         <button
-          className="md:hidden text-white"
+          className="md:hidden text-white hover:text-primary transition-colors duration-300"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -42,13 +42,13 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="absolute top-full left-0 right-0 glass md:hidden">
+          <div className="absolute top-full left-0 right-0 glass md:hidden animate-slide-down">
             <div className="flex flex-col items-center py-4 space-y-4">
               {navItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className="hover:text-primary transition-colors duration-300"
+                  className="hover:text-primary transition-colors duration-300 hover:neon-glow"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
