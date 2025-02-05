@@ -1,11 +1,25 @@
 import { Github, Twitter, Linkedin } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Hero = () => {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center pt-16 animated-bg">
       <div className="container mx-auto px-4">
         <div className="text-center space-y-8">
-          <div className="animate-slide-up">
+          <div className="flex flex-col items-center space-y-6 animate-slide-up">
+            {/* Profile Image */}
+            <div className="relative w-40 h-40 mb-4">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-secondary to-accent animate-pulse opacity-50"></div>
+              <Avatar className="w-full h-full border-4 border-white/10 glass">
+                <AvatarImage
+                  src="https://github.com/codeaj001.png"
+                  alt="Code AJ"
+                  className="rounded-full"
+                />
+                <AvatarFallback className="text-2xl">AJ</AvatarFallback>
+              </Avatar>
+            </div>
+
             <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-float neon-glow">
               Hi, I'm Code AJ
             </h1>
