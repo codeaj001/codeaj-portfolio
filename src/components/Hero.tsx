@@ -41,7 +41,7 @@ const Hero = () => {
               <Github size={32} className="text-white hover:text-primary transition-colors duration-300" />
             </a>
             <a
-              href="https://twitter.com/your-twitter"
+              href="https://twitter.com/code_a_j"
               target="_blank"
               rel="noopener noreferrer"
               className="glass p-3 hover:scale-110 transition-transform duration-300 hover:shadow-lg hover:shadow-secondary/20"
@@ -49,7 +49,7 @@ const Hero = () => {
               <Twitter size={32} className="text-white hover:text-secondary transition-colors duration-300" />
             </a>
             <a
-              href="https://linkedin.com/in/your-linkedin"
+              href="https://linkedin.com/in/aashama"
               target="_blank"
               rel="noopener noreferrer"
               className="glass p-3 hover:scale-110 transition-transform duration-300 hover:shadow-lg hover:shadow-accent/20"

@@ -4,22 +4,22 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 const Projects = () => {
   const projects = [
     {
-      title: "Solana NFT Project",
-      description: "A decentralized NFT marketplace built on Solana blockchain using Rust and React.",
+      title: "Coming Soon",
+      // description: "A decentralized NFT marketplace built on Solana blockchain using Rust and React.",
       techStack: ["Solana", "Rust", "React", "Web3.js"],
       githubUrl: "https://github.com/codeaj001",
       liveUrl: "#"
     },
     {
-      title: "DeFi Dashboard",
-      description: "Real-time DeFi dashboard for tracking Solana tokens and NFTs.",
+      title: "Coming Soon",
+      // description: "Real-time DeFi dashboard for tracking Solana tokens and NFTs.",
       techStack: ["TypeScript", "Next.js", "Tailwind CSS", "Solana/Web3.js"],
       githubUrl: "https://github.com/codeaj001",
       liveUrl: "#"
     },
     {
-      title: "Smart Contract Development",
-      description: "Collection of smart contracts developed during School of Solana Season 6.",
+      title: "Coming Soon",
+      // description: "Collection of smart contracts developed during School of Solana Season 6.",
       techStack: ["Rust", "Anchor", "Solana", "JavaScript"],
       githubUrl: "https://github.com/codeaj001",
       liveUrl: "#"
