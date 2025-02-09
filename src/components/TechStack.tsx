@@ -25,31 +25,27 @@ const TechStack = () => {
             <h2 className="text-3xl font-bold neon-text-primary">Tech Stack</h2>
           </div>
           
-          <div className="overflow-hidden">
-            <div className="marquee-container">
-              <div className="marquee">
-                {[...technologies, ...technologies].map((tech, index) => (
-                  <div
-                    key={`${tech.name}-${index}`}
-                    className="tech-card"
-                  >
-                    <div className="relative group">
-                      <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-secondary to-accent rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-1000"></div>
-                      <div className="relative glass p-4 rounded-xl flex flex-col items-center gap-4 hover:scale-105 transition-transform duration-300">
-                        <img
-                          src={tech.image}
-                          alt={tech.name}
-                          className="w-16 h-16 object-contain animate-float"
-                        />
-                        <span className="text-lg font-medium text-gray-300 group-hover:text-primary transition-colors neon-text">
-                          {tech.name}
-                        </span>
-                      </div>
-                    </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {technologies.map((tech, index) => (
+              <div
+                key={`${tech.name}-${index}`}
+                className="tech-card"
+              >
+                <div className="relative group">
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-secondary to-accent rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-1000"></div>
+                  <div className="relative glass p-4 rounded-xl flex flex-col items-center gap-4 hover:scale-105 transition-transform duration-300">
+                    <img
+                      src={tech.image}
+                      alt={tech.name}
+                      className="w-16 h-16 object-contain animate-float"
+                    />
+                    <span className="text-lg font-medium text-gray-300 group-hover:text-primary transition-colors neon-text">
+                      {tech.name}
+                    </span>
                   </div>
-                ))}
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
