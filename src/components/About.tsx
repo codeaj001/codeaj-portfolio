@@ -37,7 +37,7 @@ const About = () => {
                 </li>
                 <li className="flex items-center gap-2">
                   <Rocket size={16} className="text-accent" />
-                  Active Superteam Community Member
+                  Active Superteam Community Lurker (Member soon)
                 </li>
               </ul>
             </div>
