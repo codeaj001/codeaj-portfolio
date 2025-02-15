@@ -1,4 +1,3 @@
-
 import { Github, ExternalLink } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -11,7 +10,7 @@ const Projects = () => {
       techStack: ["React", "TypeScript", "Tailwind CSS", "DaisyUI"],
       githubUrl: "https://github.com/codeaj001",
       liveUrl: "http://stellarswap.vercel.app/",
-      image: "https://images.unsplash.com/photo-1621504450181-5d356f61d307?q=80&w=1000&auto=format&fit=crop"
+      image: "https://res.cloudinary.com/dxppcqauu/image/upload/v1710241553/Screenshot_2024-03-12_at_12.45.34_PM_sbpvgy.png"
     },
     {
       title: "Coming Soon",
