@@ -1,3 +1,4 @@
+
 import { Github, ExternalLink } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -6,11 +7,11 @@ const Projects = () => {
   const projects = [
     {
       title: "StellarSwap",
-      description: "A decentralized cryptocurrency exchange platform with a modern UI, enabling users to swap digital assets seamlessly.",
+      description: "A decentralized cryptocurrency exchange platform enabling instant SOL to NGN conversion. Experience the future of crypto exchange with secure and seamless transactions.",
       techStack: ["React", "TypeScript", "Tailwind CSS", "DaisyUI"],
       githubUrl: "https://github.com/codeaj001",
       liveUrl: "http://stellarswap.vercel.app/",
-      image: "https://res.cloudinary.com/dxppcqauu/image/upload/v1710241553/Screenshot_2024-03-12_at_12.45.34_PM_sbpvgy.png"
+      image: "/lovable-uploads/22705fa1-5c8a-45df-a442-520baefecd2f.png"
     },
     {
       title: "Coming Soon",
