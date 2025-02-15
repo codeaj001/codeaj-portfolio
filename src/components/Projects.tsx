@@ -1,6 +1,7 @@
 
 import { Github, ExternalLink } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const Projects = () => {
   const projects = [
@@ -9,21 +10,24 @@ const Projects = () => {
       description: "A decentralized cryptocurrency exchange platform with a modern UI, enabling users to swap digital assets seamlessly.",
       techStack: ["React", "TypeScript", "Tailwind CSS", "DaisyUI"],
       githubUrl: "https://github.com/codeaj001",
-      liveUrl: "http://stellarswap.vercel.app/"
+      liveUrl: "http://stellarswap.vercel.app/",
+      image: "https://images.unsplash.com/photo-1621504450181-5d356f61d307?q=80&w=1000&auto=format&fit=crop"
     },
     {
       title: "Coming Soon",
       description: "A decentralized NFT marketplace built on Solana blockchain using Rust and React.",
       techStack: ["Solana", "Rust", "React", "Web3.js"],
       githubUrl: "https://github.com/codeaj001",
-      liveUrl: "#"
+      liveUrl: "#",
+      image: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?q=80&w=1000&auto=format&fit=crop"
     },
     {
       title: "Coming Soon",
       description: "Real-time DeFi dashboard for tracking Solana tokens and NFTs.",
       techStack: ["TypeScript", "Next.js", "Tailwind CSS", "Solana/Web3.js"],
       githubUrl: "https://github.com/codeaj001",
-      liveUrl: "#"
+      liveUrl: "#",
+      image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=1000&auto=format&fit=crop"
     }
   ];
 
@@ -38,9 +42,29 @@ const Projects = () => {
           {projects.map((project, index) => (
             <Card 
               key={index}
-              className="glass card-hover border-none backdrop-blur-lg animate-slide-up"
+              className="glass card-hover border-none backdrop-blur-lg animate-slide-up overflow-hidden"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
+              <div className="relative group">
+                <AspectRatio ratio={16 / 9}>
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                  />
+                </AspectRatio>
+                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-primary"
+                  >
+                    View Project
+                  </a>
+                </div>
+              </div>
+
               <CardHeader>
                 <CardTitle className="text-2xl font-bold text-primary">
                   {project.title}
