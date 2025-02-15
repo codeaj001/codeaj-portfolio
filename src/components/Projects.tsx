@@ -5,6 +5,13 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 const Projects = () => {
   const projects = [
     {
+      title: "StellarSwap",
+      description: "A decentralized cryptocurrency exchange platform with a modern UI, enabling users to swap digital assets seamlessly.",
+      techStack: ["React", "TypeScript", "Tailwind CSS", "DaisyUI"],
+      githubUrl: "https://github.com/codeaj001",
+      liveUrl: "http://stellarswap.vercel.app/"
+    },
+    {
       title: "Coming Soon",
       description: "A decentralized NFT marketplace built on Solana blockchain using Rust and React.",
       techStack: ["Solana", "Rust", "React", "Web3.js"],
@@ -15,13 +22,6 @@ const Projects = () => {
       title: "Coming Soon",
       description: "Real-time DeFi dashboard for tracking Solana tokens and NFTs.",
       techStack: ["TypeScript", "Next.js", "Tailwind CSS", "Solana/Web3.js"],
-      githubUrl: "https://github.com/codeaj001",
-      liveUrl: "#"
-    },
-    {
-      title: "Coming Soon",
-      description: "Collection of smart contracts developed during School of Solana Season 6.",
-      techStack: ["Rust", "Anchor", "Solana", "JavaScript"],
       githubUrl: "https://github.com/codeaj001",
       liveUrl: "#"
     }
