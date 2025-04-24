@@ -14,23 +14,23 @@ const Hero = () => {
               <Avatar className="w-full h-full border-4 border-white/10 glass">
                 <AvatarImage
                   src="/lovable-uploads/0dd6e14d-98c4-4e6d-9dfc-7b70646d23fc.png"
-                  alt="GM Developer"
+                  alt="Code AJ"
                   className="rounded-full object-cover"
                 />
-                <AvatarFallback className="text-2xl">GM</AvatarFallback>
+                <AvatarFallback className="text-2xl">AJ</AvatarFallback>
               </Avatar>
             </div>
 
             <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-float neon-text">
-              Hi, I'm GM Developer
+              Hi, I'm Code AJ
             </h1>
             <div className="flex items-center justify-center gap-2 text-xl md:text-2xl text-gray-300 animate-glow">
               <Code className="text-primary" size={24} />
-              <p>Full Stack Developer</p>
+              <p>Full Stack Developer & Web3 Security</p>
               <span className="terminal-text">_</span>
             </div>
             <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto text-gray-400">
-              Crafting futuristic digital experiences with clean code and innovative solutions
+              Crafting futuristic digital experiences with clean code and innovative security solutions
             </p>
           </div>
           

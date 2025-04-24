@@ -40,7 +40,7 @@ const Navbar = () => {
         <div className="container mx-auto px-4 flex justify-between items-center">
           <Link to="/" className="text-2xl font-bold text-white flex items-center gap-2">
             <Terminal className="text-primary" />
-            <span className="terminal-text">GM_Dev</span>
+            <span className="terminal-text">Code_AJ</span>
           </Link>
 
           {/* Desktop Navigation */}

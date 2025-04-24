@@ -58,9 +58,9 @@ const Contact = () => {
     <div className="min-h-screen animated-bg cyber-grid pt-20">
       <div className="container mx-auto px-4 py-16">
         <div className="mb-12 text-center">
-          <h2 className="text-4xl font-bold mb-4 neon-text-primary">Contact Me</h2>
+          <h2 className="text-4xl font-bold mb-4 neon-text-primary">Contact Code AJ</h2>
           <p className="text-gray-300 max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? Feel free to reach out!
+            Interested in web3 security, blockchain development, or collaboration? Reach out!
           </p>
         </div>
         
@@ -147,10 +147,10 @@ const Contact = () => {
                 <h3 className="text-lg font-medium">Email</h3>
               </div>
               <div className="pl-9">
-                <a href="mailto:contact@gmdeveloper.com" className="text-gray-300 hover:text-primary transition-colors block">
-                  contact@gmdeveloper.com
+                <a href="mailto:codeaj001@gmail.com" className="text-gray-300 hover:text-primary transition-colors block">
+                  codeaj001@gmail.com
                 </a>
-                <p className="text-xs terminal-text mt-1">// Preferred contact method</p>
+                <p className="text-xs terminal-text mt-1">// Direct line for security inquiries</p>
               </div>
             </div>
             
@@ -181,13 +181,13 @@ const Contact = () => {
             <div className="relative h-[200px] mt-8 overflow-hidden rounded-xl border border-primary/30">
               <img 
                 src="/lovable-uploads/0dd6e14d-98c4-4e6d-9dfc-7b70646d23fc.png" 
-                alt="GM Developer" 
+                alt="Code AJ" 
                 className="object-cover w-full h-full"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent flex items-end">
                 <div className="p-6 w-full">
                   <p className="text-xs terminal-text mb-1">// Let's build something amazing together</p>
-                  <h3 className="text-lg font-medium">GM Developer</h3>
+                  <h3 className="text-lg font-medium">Code AJ</h3>
                 </div>
               </div>
             </div>
