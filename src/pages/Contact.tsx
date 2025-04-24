@@ -1,28 +1,168 @@
 
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, Terminal, Send } from 'lucide-react';
+import { useState } from 'react';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+    // Here you would normally send the data to a server
+    
+    // Reset form
+    setFormData({ name: '', email: '', message: '' });
+    
+    // Show success message (in a real app, you'd use a toast or alert)
+    alert("Message sent! I'll get back to you soon.");
+  };
+
   return (
-    <div className="min-h-screen animated-bg pt-20">
-      <div className="container mx-auto px-4">
-        <div className="glass p-8 rounded-2xl max-w-2xl mx-auto">
-          <h2 className="text-3xl font-bold mb-8 neon-text-primary">Contact Me</h2>
+    <div className="min-h-screen animated-bg cyber-grid pt-20">
+      <div className="container mx-auto px-4 py-16">
+        <div className="mb-12 text-center">
+          <h2 className="text-4xl font-bold mb-4 neon-text-primary">Contact Me</h2>
+          <p className="text-gray-300 max-w-2xl mx-auto">
+            Have a project in mind or want to collaborate? Feel free to reach out!
+          </p>
+        </div>
+        
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {/* Contact Form */}
+          <div className="glass cyber-border p-8 rounded-2xl">
+            <div className="flex items-center gap-3 mb-6">
+              <Terminal size={24} className="text-primary" />
+              <h3 className="text-xl font-bold terminal-text">Send Message</h3>
+            </div>
+            
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="space-y-2">
+                <label htmlFor="name" className="block text-sm text-gray-300">
+                  <div className="flex items-center gap-1 mb-1">
+                    <span className="text-xs terminal-text">// your.name</span>
+                  </div>
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 rounded-md bg-white/5 border border-primary/20 text-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors"
+                  placeholder="Enter your name"
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <label htmlFor="email" className="block text-sm text-gray-300">
+                  <div className="flex items-center gap-1 mb-1">
+                    <span className="text-xs terminal-text">// your.email</span>
+                  </div>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 rounded-md bg-white/5 border border-primary/20 text-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors"
+                  placeholder="Enter your email"
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <label htmlFor="message" className="block text-sm text-gray-300">
+                  <div className="flex items-center gap-1 mb-1">
+                    <span className="text-xs terminal-text">// your.message</span>
+                  </div>
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  rows={5}
+                  className="w-full px-4 py-3 rounded-md bg-white/5 border border-primary/20 text-white focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors"
+                  placeholder="Enter your message"
+                ></textarea>
+              </div>
+              
+              <button
+                type="submit"
+                className="group relative w-full py-3 rounded-md overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-accent animate-data-flow"></div>
+                <div className="relative bg-[#0A0F1A]/80 flex items-center justify-center gap-2 py-3 rounded-md group-hover:bg-transparent transition-colors duration-300">
+                  <Send size={18} />
+                  <span>Send Message</span>
+                </div>
+              </button>
+            </form>
+          </div>
+          
+          {/* Contact Info */}
           <div className="space-y-6">
-            <div className="flex items-center space-x-4">
-              <Mail className="text-primary" />
-              <a href="mailto:your.email@example.com" className="text-white hover:text-primary transition-colors">
-                your.email@example.com
-              </a>
+            <div className="glass cyber-border p-6 rounded-xl">
+              <div className="flex items-center gap-3 mb-4">
+                <Mail className="text-primary" />
+                <h3 className="text-lg font-medium">Email</h3>
+              </div>
+              <div className="pl-9">
+                <a href="mailto:contact@gmdeveloper.com" className="text-gray-300 hover:text-primary transition-colors block">
+                  contact@gmdeveloper.com
+                </a>
+                <p className="text-xs terminal-text mt-1">// Preferred contact method</p>
+              </div>
             </div>
-            <div className="flex items-center space-x-4">
-              <Phone className="text-primary" />
-              <a href="tel:+1234567890" className="text-white hover:text-primary transition-colors">
-                +1 (234) 567-890
-              </a>
+            
+            <div className="glass cyber-border p-6 rounded-xl">
+              <div className="flex items-center gap-3 mb-4">
+                <Phone className="text-secondary" />
+                <h3 className="text-lg font-medium">Phone</h3>
+              </div>
+              <div className="pl-9">
+                <a href="tel:+1234567890" className="text-gray-300 hover:text-secondary transition-colors block">
+                  +1 (234) 567-890
+                </a>
+                <p className="text-xs terminal-text mt-1">// Available weekdays 9am-5pm</p>
+              </div>
             </div>
-            <div className="flex items-center space-x-4">
-              <MapPin className="text-primary" />
-              <span className="text-white">Your Location</span>
+            
+            <div className="glass cyber-border p-6 rounded-xl">
+              <div className="flex items-center gap-3 mb-4">
+                <MapPin className="text-accent" />
+                <h3 className="text-lg font-medium">Location</h3>
+              </div>
+              <div className="pl-9">
+                <p className="text-gray-300">San Francisco, CA</p>
+                <p className="text-xs terminal-text mt-1">// Remote work available</p>
+              </div>
+            </div>
+            
+            <div className="relative h-[200px] mt-8 overflow-hidden rounded-xl border border-primary/30">
+              <img 
+                src="/lovable-uploads/0dd6e14d-98c4-4e6d-9dfc-7b70646d23fc.png" 
+                alt="GM Developer" 
+                className="object-cover w-full h-full"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent flex items-end">
+                <div className="p-6 w-full">
+                  <p className="text-xs terminal-text mb-1">// Let's build something amazing together</p>
+                  <h3 className="text-lg font-medium">GM Developer</h3>
+                </div>
+              </div>
             </div>
           </div>
         </div>

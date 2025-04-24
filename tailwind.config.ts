@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,6 +19,9 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['Space Grotesk', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -25,15 +29,15 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#8B5CF6",
+          DEFAULT: "#6366F1", // Indigo
           foreground: "#FFFFFF",
         },
         secondary: {
-          DEFAULT: "#F97316",
+          DEFAULT: "#22C55E", // Green
           foreground: "#FFFFFF",
         },
         accent: {
-          DEFAULT: "#0EA5E9",
+          DEFAULT: "#F43F5E", // Rose
           foreground: "#FFFFFF",
         },
         card: {
@@ -43,6 +47,7 @@ export default {
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "hero-pattern": "url('/lovable-uploads/0dd6e14d-98c4-4e6d-9dfc-7b70646d23fc.png')",
       },
       keyframes: {
         "accordion-down": {
@@ -69,6 +74,11 @@ export default {
           "0%": { transform: "translateX(-100%)", opacity: "0" },
           "100%": { transform: "translateX(0)", opacity: "1" },
         },
+        "data-flow": {
+          "0%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+          "100%": { backgroundPosition: "0% 50%" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -77,6 +87,7 @@ export default {
         glow: "glow 2s ease-in-out infinite",
         "slide-up": "slide-up 0.5s ease-out",
         "slide-in": "slide-in 0.5s ease-out",
+        "data-flow": "data-flow 15s ease infinite",
       },
     },
   },
