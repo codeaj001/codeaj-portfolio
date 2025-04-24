@@ -1,3 +1,4 @@
+
 import { Mail, Phone, MapPin, Terminal, Send } from 'lucide-react';
 import { useState } from 'react';
 import emailjs from '@emailjs/browser';
@@ -30,10 +31,10 @@ const Contact = () => {
       };
 
       await emailjs.send(
-        'service_id', // You'll need to replace this with your EmailJS service ID
-        'template_id', // You'll need to replace this with your EmailJS template ID
+        import.meta.env.VITE_EMAILJS_SERVICE_ID, 
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID, 
         templateParams,
-        'public_key' // You'll need to replace this with your EmailJS public key
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
 
       toast({
