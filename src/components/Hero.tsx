@@ -13,7 +13,7 @@ const Hero = () => {
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-secondary to-accent animate-data-flow opacity-50"></div>
               <Avatar className="w-full h-full border-4 border-white/10 glass">
                 <AvatarImage
-                  src="/lovable-uploads/0dd6e14d-98c4-4e6d-9dfc-7b70646d23fc.png"
+                  src="/uploads/0dd6e14d-98c4-4e6d-9dfc-7b70646d23fc.png"
                   alt="Code AJ"
                   className="rounded-full object-cover"
                 />

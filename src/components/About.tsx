@@ -25,7 +25,7 @@ const About = () => {
               
               <div className="relative h-64 my-6 rounded-xl overflow-hidden border border-primary/30">
                 <img 
-                  src="/lovable-uploads/0dd6e14d-98c4-4e6d-9dfc-7b70646d23fc.png" 
+                  src="/uploads/0dd6e14d-98c4-4e6d-9dfc-7b70646d23fc.png" 
                   alt="Code AJ" 
                   className="object-cover w-full h-full"
                 />
