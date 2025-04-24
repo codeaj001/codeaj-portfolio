@@ -1,6 +1,7 @@
-
 import { Mail, Phone, MapPin, Terminal, Send } from 'lucide-react';
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
+import { useToast } from "@/components/ui/use-toast";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -8,22 +9,49 @@ const Contact = () => {
     email: '',
     message: ''
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Here you would normally send the data to a server
+    setIsLoading(true);
     
-    // Reset form
-    setFormData({ name: '', email: '', message: '' });
-    
-    // Show success message (in a real app, you'd use a toast or alert)
-    alert("Message sent! I'll get back to you soon.");
+    try {
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        to_email: 'codeaj001@gmail.com',
+        message: formData.message,
+      };
+
+      await emailjs.send(
+        'service_id', // You'll need to replace this with your EmailJS service ID
+        'template_id', // You'll need to replace this with your EmailJS template ID
+        templateParams,
+        'public_key' // You'll need to replace this with your EmailJS public key
+      );
+
+      toast({
+        title: "Success!",
+        description: "Your message has been sent successfully!",
+      });
+      
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.error('Error sending email:', error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -37,7 +65,6 @@ const Contact = () => {
         </div>
         
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {/* Contact Form */}
           <div className="glass cyber-border p-8 rounded-2xl">
             <div className="flex items-center gap-3 mb-6">
               <Terminal size={24} className="text-primary" />
@@ -101,18 +128,18 @@ const Contact = () => {
               
               <button
                 type="submit"
-                className="group relative w-full py-3 rounded-md overflow-hidden"
+                disabled={isLoading}
+                className="group relative w-full py-3 rounded-md overflow-hidden disabled:opacity-50"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-accent animate-data-flow"></div>
                 <div className="relative bg-[#0A0F1A]/80 flex items-center justify-center gap-2 py-3 rounded-md group-hover:bg-transparent transition-colors duration-300">
                   <Send size={18} />
-                  <span>Send Message</span>
+                  <span>{isLoading ? "Sending..." : "Send Message"}</span>
                 </div>
               </button>
             </form>
           </div>
           
-          {/* Contact Info */}
           <div className="space-y-6">
             <div className="glass cyber-border p-6 rounded-xl">
               <div className="flex items-center gap-3 mb-4">

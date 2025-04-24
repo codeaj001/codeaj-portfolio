@@ -1,4 +1,3 @@
-
 import { Code, Terminal, Layers, Database } from 'lucide-react';
 
 const TechStack = () => {
@@ -15,6 +14,12 @@ const TechStack = () => {
     { name: 'Docker', image: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/docker/docker.png', category: 'tools' },
     { name: 'Git', image: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/git/git.png', category: 'tools' },
     { name: 'VS Code', image: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/visual-studio-code/visual-studio-code.png', category: 'tools' },
+    { name: 'Solana', image: 'https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/So11111111111111111111111111111111111111112/logo.png', category: 'blockchain' },
+    { name: 'Rust', image: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/rust/rust.png', category: 'blockchain' },
+    { name: 'Anchor', image: 'https://www.anchor-lang.com/_next/image?url=/logo.png&w=256&q=75', category: 'blockchain' },
+    { name: 'TypeScript', image: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png', category: 'blockchain' },
+    { name: 'Penetration Testing', image: 'https://cdn-icons-png.flaticon.com/512/6357/6357048.png', category: 'security' },
+    { name: 'Web3 Security', image: 'https://cdn-icons-png.flaticon.com/512/6357/6357063.png', category: 'security' },
   ];
 
   return (
@@ -92,6 +97,64 @@ const TechStack = () => {
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
                 {technologies.filter(tech => tech.category === 'tools').map((tech, index) => (
+                  <div
+                    key={`${tech.name}-${index}`}
+                    className="tech-card"
+                  >
+                    <div className="relative group">
+                      <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-secondary to-accent rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-1000"></div>
+                      <div className="relative glass p-4 rounded-xl flex flex-col items-center gap-4 hover:scale-105 transition-transform duration-300 cyber-border">
+                        <img
+                          src={tech.image}
+                          alt={tech.name}
+                          className="w-14 h-14 object-contain animate-float"
+                        />
+                        <span className="text-base font-medium text-gray-300 group-hover:text-primary transition-colors">
+                          {tech.name}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="space-y-6">
+              <div className="flex items-center gap-3">
+                <Terminal size={24} className="text-primary" />
+                <h3 className="text-xl font-semibold terminal-text">Blockchain & Web3</h3>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+                {technologies.filter(tech => tech.category === 'blockchain').map((tech, index) => (
+                  <div
+                    key={`${tech.name}-${index}`}
+                    className="tech-card"
+                  >
+                    <div className="relative group">
+                      <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-secondary to-accent rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-1000"></div>
+                      <div className="relative glass p-4 rounded-xl flex flex-col items-center gap-4 hover:scale-105 transition-transform duration-300 cyber-border">
+                        <img
+                          src={tech.image}
+                          alt={tech.name}
+                          className="w-14 h-14 object-contain animate-float"
+                        />
+                        <span className="text-base font-medium text-gray-300 group-hover:text-primary transition-colors">
+                          {tech.name}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="space-y-6">
+              <div className="flex items-center gap-3">
+                <Terminal size={24} className="text-accent" />
+                <h3 className="text-xl font-semibold terminal-text">Security & Testing</h3>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+                {technologies.filter(tech => tech.category === 'security').map((tech, index) => (
                   <div
                     key={`${tech.name}-${index}`}
                     className="tech-card"
