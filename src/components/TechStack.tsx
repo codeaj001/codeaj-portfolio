@@ -3,6 +3,7 @@ import { Code, Terminal, Layers, Database } from 'lucide-react';
 const TechStack = () => {
   const technologies = [
     { name: 'React', image: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png', category: 'frontend' },
+    { name: 'HTML', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyfQgxarjzYx75kEwzMuk2feqeJbICz7coTQ&s', category: 'frontend'},
     { name: 'TypeScript', image: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png', category: 'frontend' },
     { name: 'Next.js', image: 'https://img.icons8.com/?size=100&id=yUdJlcKanVbh&format=png&color=000000', category: 'frontend' },
     { name: 'Tailwind CSS', image: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/tailwind/tailwind.png', category: 'frontend' },
