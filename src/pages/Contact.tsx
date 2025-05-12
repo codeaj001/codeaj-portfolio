@@ -30,7 +30,7 @@ const Contact = () => {
       };
 
       await emailjs.send(
-        'service_id', // You'll need to replace this with your EmailJS service ID
+        'default_service', // You'll need to replace this with your EmailJS service ID
         'template_lx1rvjn', // You'll need to replace this with your EmailJS template ID
         templateParams,
         'RreUhqIChv1-YAfh3' // You'll need to replace this with your EmailJS public key
@@ -180,7 +180,7 @@ const Contact = () => {
             
             <div className="relative h-[200px] mt-8 overflow-hidden rounded-xl border border-primary/30">
               <img 
-                src="/lovable-uploads/0dd6e14d-98c4-4e6d-9dfc-7b70646d23fc.png" 
+                src="/uploads/0dd6e14d-98c4-4e6d-9dfc-7b70646d23fc.png" 
                 alt="Code AJ" 
                 className="object-cover w-full h-full"
               />
