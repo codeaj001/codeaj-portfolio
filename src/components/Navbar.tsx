@@ -52,7 +52,7 @@ const Navbar = () => {
             return <Link key={item.href} to={item.href} data-active={active} className={`nav-link text-xs ${active ? "font-semibold text-black" : "text-[#424245]"}`}>{item.name}</Link>;
           })}
         </div>
-        <Link to="/contact" className="button-primary hidden !min-h-8 !px-4 !py-1 text-xs md:inline-flex">Let's talk</Link>
+        <Link to="/contact" className="button-primary nav-cta !min-h-8 !px-4 !py-1 text-xs">Let's talk</Link>
         <button type="button" className="grid h-9 w-9 place-items-center rounded-full md:hidden" onClick={() => setIsOpen(!isOpen)} aria-expanded={isOpen} aria-label={isOpen ? "Close menu" : "Open menu"}>
           {isOpen ? <X size={18} /> : <Menu size={18} />}
         </button>
