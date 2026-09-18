@@ -3,7 +3,7 @@ import Hero from '../components/Hero';
 
 const Home = () => {
   return (
-    <div className="min-h-screen animated-bg">
+    <div className="page-shell">
       <Hero />
     </div>
   );

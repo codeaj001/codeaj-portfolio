@@ -1,71 +1,83 @@
+import { useEffect, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowUpRight, Github, Linkedin, Twitter } from "lucide-react";
+import { Link } from "react-router-dom";
+import { enterTransition, MOTION } from "@/lib/motion";
 
-import { Github, Twitter, Linkedin, Code } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+/* ─────────────────────────────────────────────────────────
+ * HERO STORYBOARD
+ *
+ *    0ms   primary actions are visible and interactive
+ *   60ms   eyebrow + headline settle in from below
+ *  180ms   supporting copy and portrait settle in together
+ *  300ms   social links cascade in (45ms each)
+ *  390ms   hero is fully visible and idle
+ * ───────────────────────────────────────────────────────── */
+const TIMING = { headline: 60, support: 180, socials: 300 } as const;
+const SOCIALS = { stagger: MOTION.stagger, transform: "translateY(8px)" } as const;
 
 const Hero = () => {
-  return (
-    <section id="home" className="min-h-screen flex items-center justify-center pt-16 animated-bg cyber-grid">
-      <div className="container mx-auto px-4">
-        <div className="text-center space-y-8">
-          <div className="flex flex-col items-center space-y-6 animate-slide-up">
-            {/* Profile Image */}
-            <div className="relative w-48 h-48 mb-4">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-secondary to-accent animate-data-flow opacity-50"></div>
-              <Avatar className="w-full h-full border-4 border-white/10 glass">
-                <AvatarImage
-                  src="/uploads/0dd6e14d-98c4-4e6d-9dfc-7b70646d23fc.png"
-                  alt="Code AJ"
-                  className="rounded-full object-cover"
-                />
-                <AvatarFallback className="text-2xl">AJ</AvatarFallback>
-              </Avatar>
-            </div>
+  const reduceMotion = useReducedMotion();
+  const [stage, setStage] = useState(reduceMotion ? 3 : 0);
 
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-float neon-text">
-              Hi, I'm Code AJ
-            </h1>
-            <div className="flex items-center justify-center gap-2 text-xl md:text-2xl text-gray-300 animate-glow">
-              <Code className="text-primary" size={24} />
-              <p>Full Stack Developer & Web3 Security</p>
-              <span className="terminal-text">_</span>
-            </div>
-            <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto text-gray-400">
-              Crafting futuristic digital experiences with clean code and innovative security solutions
-            </p>
-          </div>
-          
-          <div className="data-line"></div>
-          
-          <div className="flex justify-center space-x-6 animate-slide-in">
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="glass cyber-border p-3 hover:scale-110 transition-transform duration-300 hover:shadow-lg hover:shadow-primary/20"
-            >
-              <Github size={32} className="text-white hover:text-primary transition-colors duration-300" />
-            </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="glass cyber-border p-3 hover:scale-110 transition-transform duration-300 hover:shadow-lg hover:shadow-secondary/20"
-            >
-              <Twitter size={32} className="text-white hover:text-secondary transition-colors duration-300" />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="glass cyber-border p-3 hover:scale-110 transition-transform duration-300 hover:shadow-lg hover:shadow-accent/20"
-            >
-              <Linkedin size={32} className="text-white hover:text-accent transition-colors duration-300" />
-            </a>
-          </div>
+  useEffect(() => {
+    if (reduceMotion) { setStage(3); return; }
+    const timers = [
+      window.setTimeout(() => setStage(1), TIMING.headline),
+      window.setTimeout(() => setStage(2), TIMING.support),
+      window.setTimeout(() => setStage(3), TIMING.socials),
+    ];
+    return () => timers.forEach(window.clearTimeout);
+  }, [reduceMotion]);
+
+  const reveal = (visible: boolean, offsetY = 16) => ({
+    initial: reduceMotion ? false : { opacity: 0, transform: `translateY(${offsetY}px)` },
+    animate: { opacity: visible ? 1 : 0, transform: visible || reduceMotion ? "translateY(0px)" : `translateY(${offsetY}px)` },
+    transition: reduceMotion ? { duration: 0 } : enterTransition,
+  });
+
+  return <section id="home" className="relative flex min-h-[94vh] items-center overflow-hidden pt-12">
+    <div className="hero-orb hero-orb-blue" />
+    <div className="hero-orb hero-orb-violet" />
+    <div className="content relative grid items-center gap-12 px-6 py-24 lg:grid-cols-[1.25fr_.75fr] lg:px-8">
+      <div>
+        <motion.div {...reveal(stage >= 1)}>
+          <p className="eyebrow">Full-stack developer · Web3 security</p>
+          <h1 className="display">I build digital products that feel inevitable.</h1>
+        </motion.div>
+        <motion.p {...reveal(stage >= 2, 12)} className="lede mt-7 max-w-2xl">Clean interfaces. Resilient systems. Thoughtful security. I turn ambitious ideas into products people understand the first time they use them.</motion.p>
+        <div className="mt-8 flex flex-wrap gap-3">
+          <Link to="/projects" className="button-primary">See my work <ArrowUpRight className="button-arrow" size={17} /></Link>
+          <Link to="/contact" className="button-secondary">Start a conversation</Link>
+        </div>
+        <div className="mt-10 flex gap-2" aria-label="Social links">
+          {[
+            { href: "https://github.com/gmdeveloper", label: "GitHub", icon: Github },
+            { href: "https://twitter.com", label: "X / Twitter", icon: Twitter },
+            { href: "https://linkedin.com", label: "LinkedIn", icon: Linkedin },
+          ].map(({ href, label, icon: Icon }, index) => (
+            <motion.a key={label} href={href} target="_blank" rel="noreferrer" className="icon-button" aria-label={label}
+              initial={reduceMotion ? false : { opacity: 0, transform: SOCIALS.transform }}
+              animate={{ opacity: stage >= 3 ? 1 : 0, transform: stage >= 3 || reduceMotion ? "translateY(0px)" : SOCIALS.transform }}
+              transition={reduceMotion ? { duration: 0 } : { ...enterTransition, delay: index * SOCIALS.stagger }}>
+              <Icon size={19} />
+            </motion.a>
+          ))}
         </div>
       </div>
-    </section>
-  );
+      <motion.div {...reveal(stage >= 2, 18)} className="mx-auto w-full max-w-[430px]">
+        <div className="material relative overflow-hidden rounded-[42px] p-3">
+          <div className="image-wash aspect-[4/5] overflow-hidden rounded-[32px]">
+            <img src="/uploads/0dd6e14d-98c4-4e6d-9dfc-7b70646d23fc.png" alt="Illustration of Code AJ" className="h-full w-full object-cover" />
+          </div>
+          <div className="absolute bottom-7 left-7 right-7 rounded-2xl bg-white/80 px-5 py-4 backdrop-blur-xl">
+            <p className="text-sm font-semibold">Available for select projects</p>
+            <p className="mt-1 text-xs text-[#6e6e73]">Building from Lagos, working worldwide.</p>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  </section>
 };
 
 export default Hero;

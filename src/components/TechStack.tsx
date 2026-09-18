@@ -1,187 +1,67 @@
-import { Code, Terminal, Layers, Database } from 'lucide-react';
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { Blocks, Code2, Database, ShieldCheck } from "lucide-react";
+import { enterTransition, MOTION } from "@/lib/motion";
+
+/* ─────────────────────────────────────────────────────────
+ * EXPERTISE STORYBOARD
+ *
+ *    0ms   dark section surface is present
+ *   80ms   section heading settles in
+ *  210ms   expertise panels cascade in (50ms each)
+ *  360ms   all panels are visible and idle
+ * ───────────────────────────────────────────────────────── */
+const TIMING = { heading: 80, groups: 210 } as const;
+const HEADING = { transform: "translateY(14px)" } as const;
+const PANELS = { stagger: MOTION.stagger, transform: "translateY(16px)" } as const;
+
+const groups = [
+  { icon: Code2, title: "Interfaces", summary: "Fast, accessible product experiences for every screen.", items: ["React", "TypeScript", "Next.js", "Tailwind CSS", "HTML & CSS"] },
+  { icon: Database, title: "Systems", summary: "Reliable foundations designed to grow with the product.", items: ["PostgreSQL", "APIs", "Docker", "Git", "Cloud workflows"] },
+  { icon: Blocks, title: "Blockchain", summary: "Practical onchain products with careful transaction design.", items: ["Solana", "Rust", "Anchor", "Web3 integrations", "Smart contracts"] },
+  { icon: ShieldCheck, title: "Security", summary: "Threat-aware engineering from the first architecture sketch.", items: ["Web3 security", "Penetration testing", "Code review", "Attack modeling", "Secure UX"] },
+];
 
 const TechStack = () => {
-  const technologies = [
-    { name: 'React', image: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png', category: 'frontend' },
-    { name: 'HTML', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyfQgxarjzYx75kEwzMuk2feqeJbICz7coTQ&s', category: 'frontend'},
-    { name: 'TypeScript', image: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png', category: 'frontend' },
-    { name: 'Next.js', image: 'https://img.icons8.com/?size=100&id=yUdJlcKanVbh&format=png&color=000000', category: 'frontend' },
-    { name: 'Tailwind CSS', image: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/tailwind/tailwind.png', category: 'frontend' },
-    // { name: 'Node.js', image: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/nodejs/nodejs.png', category: 'backend' },
-    // { name: 'Express', image: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/express/express.png', category: 'backend' },
-    // { name: 'MongoDB', image: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/mongodb/mongodb.png', category: 'backend' },
-    { name: 'PostgreSQL', image: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/postgresql/postgresql.png', category: 'backend' },
-    // { name: 'GraphQL', image: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/graphql/graphql.png', category: 'backend' },
-    { name: 'Docker', image: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/docker/docker.png', category: 'tools' },
-    { name: 'Git', image: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/git/git.png', category: 'tools' },
-    { name: 'VS Code', image: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/visual-studio-code/visual-studio-code.png', category: 'tools' },
-    { name: 'Solana', image: 'https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/So11111111111111111111111111111111111111112/logo.png', category: 'blockchain' },
-    { name: 'Rust', image: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/rust/rust.png', category: 'blockchain' },
-    { name: 'Anchor', image: 'https://camo.githubusercontent.com/590ccfb4e70a27673047ee879ed409981c05b2da403e60b4aaa7961ccdb46001/68747470733a2f2f7062732e7477696d672e636f6d2f6d656469612f46565556614f3958454141756c764b3f666f726d61743d706e67266e616d653d736d616c6c', category: 'blockchain' },
-    { name: 'TypeScript', image: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png', category: 'blockchain' },
-    { name: 'Penetration Testing', image: 'https://cdn-icons-png.flaticon.com/512/6357/6357048.png', category: 'security' },
-    { name: 'Web3 Security', image: 'https://www.oclc.org/content/marketing/publish/en_us/trust/security/jcr%3Acontent/hero_area/parsyscolumncontrol_/col0/parsyscolumncontrol/col0/parsyscolumncontrol/col1/image.img.png/1686837674374.png', category: 'security' },
-  ];
+  const reduceMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const inView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const [stage, setStage] = useState(reduceMotion ? 2 : 0);
+  useEffect(() => {
+    if (reduceMotion) { setStage(2); return; }
+    if (!inView) return;
+    const timers = [window.setTimeout(() => setStage(1), TIMING.heading), window.setTimeout(() => setStage(2), TIMING.groups)];
+    return () => timers.forEach(window.clearTimeout);
+  }, [inView, reduceMotion]);
 
-  return (
-    <section id="skills" className="min-h-screen py-20 animated-bg cyber-grid">
-      <div className="container mx-auto px-4">
-        <div className="glass cyber-border p-8 rounded-2xl">
-          <div className="flex items-center gap-4 mb-12">
-            <Terminal size={32} className="text-primary animate-pulse" />
-            <h2 className="text-3xl font-bold neon-text-primary">Tech Stack</h2>
-          </div>
-          
-          <div className="space-y-12">
-            <div className="space-y-6">
-              <div className="flex items-center gap-3">
-                <Code size={24} className="text-primary" />
-                <h3 className="text-xl font-semibold terminal-text">Frontend Technologies</h3>
-              </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-                {technologies.filter(tech => tech.category === 'frontend').map((tech, index) => (
-                  <div
-                    key={`${tech.name}-${index}`}
-                    className="tech-card"
-                  >
-                    <div className="relative group">
-                      <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-secondary to-accent rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-1000"></div>
-                      <div className="relative glass p-4 rounded-xl flex flex-col items-center gap-4 hover:scale-105 transition-transform duration-300 cyber-border">
-                        <img
-                          src={tech.image}
-                          alt={tech.name}
-                          className="w-14 h-14 object-contain animate-float"
-                        />
-                        <span className="text-base font-medium text-gray-300 group-hover:text-primary transition-colors">
-                          {tech.name}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            <div className="space-y-6">
-              <div className="flex items-center gap-3">
-                <Database size={24} className="text-secondary" />
-                <h3 className="text-xl font-semibold terminal-text">Backend & Database</h3>
-              </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-                {technologies.filter(tech => tech.category === 'backend').map((tech, index) => (
-                  <div
-                    key={`${tech.name}-${index}`}
-                    className="tech-card"
-                  >
-                    <div className="relative group">
-                      <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-secondary to-accent rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-1000"></div>
-                      <div className="relative glass p-4 rounded-xl flex flex-col items-center gap-4 hover:scale-105 transition-transform duration-300 cyber-border">
-                        <img
-                          src={tech.image}
-                          alt={tech.name}
-                          className="w-14 h-14 object-contain animate-float"
-                        />
-                        <span className="text-base font-medium text-gray-300 group-hover:text-primary transition-colors">
-                          {tech.name}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            <div className="space-y-6">
-              <div className="flex items-center gap-3">
-                <Layers size={24} className="text-accent" />
-                <h3 className="text-xl font-semibold terminal-text">Tools & DevOps</h3>
-              </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-                {technologies.filter(tech => tech.category === 'tools').map((tech, index) => (
-                  <div
-                    key={`${tech.name}-${index}`}
-                    className="tech-card"
-                  >
-                    <div className="relative group">
-                      <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-secondary to-accent rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-1000"></div>
-                      <div className="relative glass p-4 rounded-xl flex flex-col items-center gap-4 hover:scale-105 transition-transform duration-300 cyber-border">
-                        <img
-                          src={tech.image}
-                          alt={tech.name}
-                          className="w-14 h-14 object-contain animate-float"
-                        />
-                        <span className="text-base font-medium text-gray-300 group-hover:text-primary transition-colors">
-                          {tech.name}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            <div className="space-y-6">
-              <div className="flex items-center gap-3">
-                <Terminal size={24} className="text-primary" />
-                <h3 className="text-xl font-semibold terminal-text">Blockchain & Web3</h3>
-              </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-                {technologies.filter(tech => tech.category === 'blockchain').map((tech, index) => (
-                  <div
-                    key={`${tech.name}-${index}`}
-                    className="tech-card"
-                  >
-                    <div className="relative group">
-                      <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-secondary to-accent rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-1000"></div>
-                      <div className="relative glass p-4 rounded-xl flex flex-col items-center gap-4 hover:scale-105 transition-transform duration-300 cyber-border">
-                        <img
-                          src={tech.image}
-                          alt={tech.name}
-                          className="w-14 h-14 object-contain animate-float"
-                        />
-                        <span className="text-base font-medium text-gray-300 group-hover:text-primary transition-colors">
-                          {tech.name}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            <div className="space-y-6">
-              <div className="flex items-center gap-3">
-                <Terminal size={24} className="text-accent" />
-                <h3 className="text-xl font-semibold terminal-text">Security & Testing</h3>
-              </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-                {technologies.filter(tech => tech.category === 'security').map((tech, index) => (
-                  <div
-                    key={`${tech.name}-${index}`}
-                    className="tech-card"
-                  >
-                    <div className="relative group">
-                      <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-secondary to-accent rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-1000"></div>
-                      <div className="relative glass p-4 rounded-xl flex flex-col items-center gap-4 hover:scale-105 transition-transform duration-300 cyber-border">
-                        <img
-                          src={tech.image}
-                          alt={tech.name}
-                          className="w-14 h-14 object-contain animate-float"
-                        />
-                        <span className="text-base font-medium text-gray-300 group-hover:text-primary transition-colors">
-                          {tech.name}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+  return <section ref={sectionRef} id="skills" className="section bg-[#101010] text-white">
+    <div className="content">
+      <motion.div initial={reduceMotion ? false : { opacity: 0, transform: HEADING.transform }}
+        animate={{ opacity: stage >= 1 ? 1 : 0, transform: stage >= 1 || reduceMotion ? "translateY(0px)" : HEADING.transform }}
+        transition={reduceMotion ? { duration: 0 } : enterTransition}>
+        <p className="eyebrow !text-[#2997ff]">Expertise</p>
+        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <h2 className="section-title max-w-3xl">One craft, from first pixel to final deployment.</h2>
+          <p className="max-w-sm text-lg leading-7 text-[#a1a1a6]">A focused toolkit for shipping thoughtful, production-ready products.</p>
         </div>
+      </motion.div>
+      <div className="mt-14 grid gap-px overflow-hidden rounded-[30px] bg-white/10 md:grid-cols-2">
+        {groups.map(({ icon: Icon, title, summary, items }, index) => (
+          <motion.article key={title} className="expertise-panel bg-[#181818] p-7 md:p-10"
+            initial={reduceMotion ? false : { opacity: 0, transform: PANELS.transform }}
+            animate={{ opacity: stage >= 2 ? 1 : 0, transform: stage >= 2 || reduceMotion ? "translateY(0px)" : PANELS.transform }}
+            transition={reduceMotion ? { duration: 0 } : { ...enterTransition, delay: index * PANELS.stagger }}>
+            <Icon className="text-[#2997ff]" size={28} />
+            <h3 className="mt-8 text-3xl font-semibold tracking-[-.04em]">{title}</h3>
+            <p className="mt-3 max-w-md leading-7 text-[#a1a1a6]">{summary}</p>
+            <div className="mt-7 flex flex-wrap gap-2">
+              {items.map(item => <span key={item} className="rounded-full bg-white/[0.07] px-3 py-1.5 text-sm text-[#f5f5f7]">{item}</span>)}
+            </div>
+          </motion.article>
+        ))}
       </div>
-    </section>
-  );
+    </div>
+  </section>
 };
 
 export default TechStack;

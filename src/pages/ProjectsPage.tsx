@@ -3,7 +3,7 @@ import Projects from '../components/Projects';
 
 const ProjectsPage = () => {
   return (
-    <div className="min-h-screen animated-bg pt-20">
+    <div className="page-shell pt-12">
       <Projects />
     </div>
   );

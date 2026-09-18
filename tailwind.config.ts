@@ -1,5 +1,6 @@
 
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
@@ -20,7 +21,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Space Grotesk', 'sans-serif'],
+        sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Text', 'Helvetica Neue', 'Arial', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -29,20 +30,20 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#6366F1", // Indigo
+          DEFAULT: "#0071E3",
           foreground: "#FFFFFF",
         },
         secondary: {
-          DEFAULT: "#22C55E", // Green
-          foreground: "#FFFFFF",
+          DEFAULT: "#F5F5F7",
+          foreground: "#1D1D1F",
         },
         accent: {
-          DEFAULT: "#F43F5E", // Rose
+          DEFAULT: "#2997FF",
           foreground: "#FFFFFF",
         },
         card: {
-          DEFAULT: "rgba(255, 255, 255, 0.1)",
-          foreground: "#FFFFFF",
+          DEFAULT: "#FFFFFF",
+          foreground: "#1D1D1F",
         },
       },
       backgroundImage: {
@@ -91,5 +92,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 } satisfies Config;
