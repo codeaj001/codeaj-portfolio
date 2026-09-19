@@ -52,9 +52,9 @@ const Hero = () => {
         </div>
         <div className="mt-10 flex gap-2" aria-label="Social links">
           {[
-            { href: "https://github.com/gmdeveloper", label: "GitHub", icon: Github },
-            { href: "https://twitter.com", label: "X / Twitter", icon: Twitter },
-            { href: "https://linkedin.com", label: "LinkedIn", icon: Linkedin },
+            { href: "https://github.com/codeaj001", label: "GitHub", icon: Github },
+            { href: "https://twitter.com/codeajdotsol", label: "X / Twitter", icon: Twitter },
+            { href: "https://linkedin.com/in/aashama", label: "LinkedIn", icon: Linkedin },
           ].map(({ href, label, icon: Icon }, index) => (
             <motion.a key={label} href={href} target="_blank" rel="noreferrer" className="icon-button" aria-label={label}
               initial={reduceMotion ? false : { opacity: 0, transform: SOCIALS.transform }}
