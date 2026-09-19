@@ -55,7 +55,7 @@ const Contact = () => {
             <div className="mt-10 space-y-4">
               {[
                 <a key="email" href="mailto:codeaj001@gmail.com" className="contact-method flex items-center gap-4 rounded-2xl bg-white p-4"><span className="grid h-11 w-11 place-items-center rounded-full bg-[#e8f2ff] text-[#0071e3]"><Mail size={19}/></span><span><span className="block text-xs text-[#6e6e73]">Email</span><span className="font-medium">codeaj001@gmail.com</span></span><ArrowUpRight className="button-arrow ml-auto text-[#86868b]" size={18}/></a>,
-                <div key="location" className="flex items-center gap-4 rounded-2xl bg-white p-4"><span className="grid h-11 w-11 place-items-center rounded-full bg-[#e8f2ff] text-[#0071e3]"><MapPin size={19}/></span><span><span className="block text-xs text-[#6e6e73]">Based in</span><span className="font-medium">Lagos, Nigeria · Remote worldwide</span></span></div>,
+                <div key="location" className="flex items-center gap-4 rounded-2xl bg-white p-4"><span className="grid h-11 w-11 place-items-center rounded-full bg-[#e8f2ff] text-[#0071e3]"><MapPin size={19}/></span><span><span className="block text-xs text-[#6e6e73]">Based in</span><span className="font-medium">Nasarawa, Nigeria · Remote worldwide</span></span></div>,
               ].map((method, index) => <motion.div key={method.key}
                 initial={reduceMotion ? false : { opacity: 0, transform: METHODS.transform }}
                 animate={{ opacity: stage >= 2 ? 1 : 0, transform: stage >= 2 || reduceMotion ? "translateY(0px)" : METHODS.transform }}
