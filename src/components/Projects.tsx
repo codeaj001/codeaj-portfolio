@@ -27,6 +27,16 @@ const projects = [
     image: "/projects/qubicperp.webp",
   },
   {
+    title: "StellarSwap",
+    eyebrow: "Solana · Fiat exchange",
+    description: "A confidence-first crypto exchange experience for converting Solana assets to Nigerian naira instantly, securely and seamlessly.",
+    stack: ["React", "TypeScript", "Tailwind CSS", "DaisyUI", "Solana"],
+    commits: null,
+    githubUrl: "https://github.com/codeaj001",
+    liveUrl: "https://stellarswap.vercel.app",
+    image: "/projects/stellarswap.png",
+  },
+  {
     title: "UniVend",
     eyebrow: "Full-stack product",
     description: "A multi-page campus marketplace with authentication, KYC, product listings, discovery, profiles and direct buyer–seller conversations.",
@@ -130,9 +140,11 @@ const Projects = () => {
               <div className="flex flex-col p-7 md:p-9">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <p className="text-sm font-medium text-[#0071e3]">0{index + 1} · {project.eyebrow}</p>
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#f5f5f7] px-3 py-1 text-xs font-medium text-[#6e6e73]">
-                    <GitCommitHorizontal size={13} /> {project.commits} commits
-                  </span>
+                  {project.commits !== null && (
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#f5f5f7] px-3 py-1 text-xs font-medium text-[#6e6e73]">
+                      <GitCommitHorizontal size={13} /> {project.commits} commits
+                    </span>
+                  )}
                 </div>
                 <h3 className="mt-5 text-3xl font-semibold tracking-[-.045em] md:text-4xl">{project.title}</h3>
                 <p className="muted mt-4 max-w-xl text-lg leading-7">{project.description}</p>
