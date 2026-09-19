@@ -29,7 +29,7 @@ a { color: inherit; text-decoration: none; }
 .section-soft { background: var(--surface); }
 .content { width: min(1120px, 100%); margin: 0 auto; }
 .eyebrow { margin: 0 0 .75rem; color: var(--blue); font-size: .875rem; font-weight: 650; letter-spacing: .015em; }
-.display { margin: 0; max-width: 900px; font-size: clamp(3rem, 7vw, 5.8rem); line-height: .96; letter-spacing: -.06em; font-weight: 700; }
+.display { margin: 0; max-width: 900px; font-size: clamp(2.75rem, 5.5vw, 4.75rem); line-height: .98; letter-spacing: -.055em; font-weight: 700; }
 .section-title { margin: 0; font-size: clamp(2.35rem, 5vw, 4.5rem); line-height: 1.02; letter-spacing: -.05em; font-weight: 700; }
 .lede { color: var(--muted); font-size: clamp(1.15rem, 2vw, 1.5rem); line-height: 1.45; letter-spacing: -.02em; }
 .muted { color: var(--muted); }
