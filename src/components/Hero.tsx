@@ -68,7 +68,7 @@ const Hero = () => {
       <motion.div {...reveal(stage >= 2, 18)} className="mx-auto w-full max-w-[430px]">
         <div className="material relative overflow-hidden rounded-[42px] p-3">
           <div className="image-wash aspect-[4/5] overflow-hidden rounded-[32px]">
-            <img src="/uploads/0dd6e14d-98c4-4e6d-9dfc-7b70646d23fc.png" alt="Illustration of Code AJ" className="h-full w-full object-cover" />
+            <img src="/uploads/hero-avatar.webp" alt="Colorful illustrated avatar of Code AJ" className="h-full w-full object-cover" />
           </div>
           <div className="absolute bottom-7 left-7 right-7 rounded-2xl bg-white/80 px-5 py-4 backdrop-blur-xl">
             <p className="text-sm font-semibold">Available for select projects</p>
