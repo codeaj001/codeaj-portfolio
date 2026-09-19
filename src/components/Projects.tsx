@@ -17,6 +17,16 @@ const CARDS = { stagger: MOTION.stagger, transform: "translateY(22px)" } as cons
 
 const projects = [
   {
+    title: "StellarSwap",
+    eyebrow: "Solana · Fiat exchange",
+    description: "A confidence-first crypto exchange experience for converting Solana assets to Nigerian naira instantly, securely and seamlessly.",
+    stack: ["React", "TypeScript", "Tailwind CSS", "DaisyUI", "Solana"],
+    commits: 2,
+    githubUrl: "https://github.com/codeaj001/stellarswap",
+    liveUrl: "https://stellarswap.vercel.app",
+    image: "/projects/stellarswap.png",
+  },
+  {
     title: "QubicPerp",
     eyebrow: "DeFi · AI · Smart contracts",
     description: "A zero-gas DeFi super app on Qubic that brings swaps, perpetual futures, AI-powered prediction markets, lending and staking into one product.",
@@ -25,16 +35,6 @@ const projects = [
     githubUrl: "https://github.com/codeaj001/QubicPerp",
     liveUrl: "https://qubicperp.vercel.app",
     image: "/projects/qubicperp.webp",
-  },
-  {
-    title: "StellarSwap",
-    eyebrow: "Solana · Fiat exchange",
-    description: "A confidence-first crypto exchange experience for converting Solana assets to Nigerian naira instantly, securely and seamlessly.",
-    stack: ["React", "TypeScript", "Tailwind CSS", "DaisyUI", "Solana"],
-    commits: null,
-    githubUrl: "https://github.com/codeaj001",
-    liveUrl: "https://stellarswap.vercel.app",
-    image: "/projects/stellarswap.png",
   },
   {
     title: "UniVend",
@@ -63,7 +63,7 @@ const projects = [
     stack: ["React", "Vite", "Polygon", "USDC", "Trails intents"],
     commits: 9,
     githubUrl: "https://github.com/codeaj001/polypaid",
-    liveUrl: null,
+    liveUrl: "https://polypaid.vercel.app",
     image: "/projects/polypaid.webp",
   },
   {
