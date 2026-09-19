@@ -71,8 +71,8 @@ const Hero = () => {
             <img src="/uploads/hero-avatar.webp" alt="Colorful illustrated avatar of Code AJ" className="h-full w-full object-cover" />
           </div>
           <div className="absolute bottom-7 left-7 right-7 rounded-2xl bg-white/80 px-5 py-4 backdrop-blur-xl">
-            <p className="text-sm font-semibold">Available for select projects</p>
-            <p className="mt-1 text-xs text-[#6e6e73]">Building from Lagos, working worldwide.</p>
+            <p className="text-sm font-semibold">Available for projects</p>
+            <p className="mt-1 text-xs text-[#6e6e73]">Building from Universe.</p>
           </div>
         </div>
       </motion.div>
